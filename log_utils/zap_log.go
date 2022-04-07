@@ -14,7 +14,7 @@ import (
 
 var (
 	Log        *zap.Logger
-	logpath    = filepath.Join(os.TempDir(), fmt.Sprintf("test-log-%d", time.Now().UnixNano()))
+	logpath    = filepath.Join(os.TempDir(), "tinyurl", fmt.Sprintf("test-log-%d", time.Now().UnixNano()))
 	zaplogPath = filepath.Join("winfile:///", logpath)
 )
 
@@ -31,6 +31,7 @@ func newWinfileSink(u *url.URL) (zap.Sink, error) {
 }
 
 func init() {
+	fmt.Println(os.TempDir())
 	zap.RegisterSink("winfile", newWinfileSink)
 	logConfig := zap.Config{
 
